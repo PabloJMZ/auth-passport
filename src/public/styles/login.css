@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Montserrat';
+}
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10vh;
+    background-color: #0077b6;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+a:hover{
+    color: #03045e;
+}
+.background{
+    height: 100vh;
+    /* background-image: url("https://images.pexels.com/photos/4609733/pexels-photo-4609733.jpeg"); */
+    background-color: #d4f8ff;
+    background-size: cover;
+    background-position:  center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    background-color: #fff;
+    padding: 50px 25px;
+    border-radius: 20px;
+    box-shadow: 4px 4px 4px #878787;
+}
+input{
+    width: 350px;
+    display: block;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 15px 10px;
+    border: none;
+    background-color: #f3f3f3;
+    outline: none;
+}
+input:focus{
+    box-shadow: 1px 1px 8px #90e0ef;
+}
+input[type="password"], input[type="submit"]{
+    margin-top: 20px;
+}
+input[type="submit"]{
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    border: none;
+    background-color: #0077b6;
+}
+input[type="submit"]:hover{
+    background-color: #0096c7;
+}input[type="submit"]:active{
+    background-color: #ade8f4;
+    color: #03045e;
+}
