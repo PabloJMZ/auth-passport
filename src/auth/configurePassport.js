@@ -10,6 +10,7 @@ function configurePassport(passport, database){
     },
     (req, username, password, done) => {
       // Buscar el usuario en la base de datos
+      console.log(username, password);
       const user = database.find(u => u.username === username);
 
       if (!user || user.password !== password) {
@@ -46,3 +47,5 @@ function configurePassport(passport, database){
     done(null, user);
   });
 }
+
+module.exports = configurePassport;

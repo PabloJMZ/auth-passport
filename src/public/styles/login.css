@@ -38,9 +38,12 @@ a:hover{
 }
 form{
     background-color: #fff;
-    padding: 50px 25px;
+    padding: 10px 25px 20px 25px;
     border-radius: 20px;
     box-shadow: 4px 4px 4px #878787;
+}
+form h1{
+    font-size: 25px;
 }
 input{
     width: 350px;
@@ -51,12 +54,13 @@ input{
     border: none;
     background-color: #f3f3f3;
     outline: none;
+    margin-top: 20px;
 }
 input:focus{
-    box-shadow: 1px 1px 8px #90e0ef;
+    box-shadow: 1px 1px 8px #37727d;
 }
-input[type="password"], input[type="submit"]{
-    margin-top: 20px;
+input[type="text"]{
+    margin-top: 10px;
 }
 input[type="submit"]{
     font-weight: 600;
@@ -70,4 +74,10 @@ input[type="submit"]:hover{
 }input[type="submit"]:active{
     background-color: #ade8f4;
     color: #03045e;
+}
+.message{
+    color: #e13926;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 5px;
 }

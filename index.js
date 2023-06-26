@@ -10,6 +10,29 @@ const router = require('./src/routes');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
 
+const passport = require('passport');
+const flash = require('connect-flash');
+const configurePassport = require('./src/auth/configurePassport');
+// Arreglo para almacenar los usuarios (simulando una base de datos)
+const database = [
+    {
+        username: "PabloJMZ",
+        password: "123"
+    }
+];
+
+configurePassport(passport, database);
+
+app.use(require('express-session')({
+  secret: 'secreto',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(flash()); // Agrega el middleware de connect-flash
+app.use(passport.initialize());
+app.use(passport.session());
+
 // middlewares
 app.use(morgan('dev'));
 app.use(express.static('src/public'));
@@ -18,6 +41,10 @@ app.use(express.json());
 
 // routes
 app.use(router);
+
+app.get('/users',(req, res) => {
+    res.json(database);
+})
 
 app.listen(port,()=>{
     console.log(`http://localhost:${port}`);
