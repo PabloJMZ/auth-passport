@@ -10,13 +10,15 @@ router.get('/',(req, res) => {
 router.get('/Sign-In',
     skipAuth,
     (req, res) => {
-    res.render('login');
+    const message = req.flash('messageSign-In')[0];
+    res.render('login',{message});
 })
 
 router.get('/Sign-Up',
     skipAuth,
     (req, res) => {
-    res.render('register');
+    const message = req.flash('messageSign-Up')[0];
+    res.render('register',{message});
 })
 
 router.get('/home',

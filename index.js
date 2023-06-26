@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
 const morgan = require('morgan');
 const ip = require('ip');
@@ -14,14 +15,9 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const configurePassport = require('./src/auth/configurePassport');
 // Arreglo para almacenar los usuarios (simulando una base de datos)
-const database = [
-    {
-        username: "PabloJMZ",
-        password: "123"
-    }
-];
+const User = require('./src/database/schemas/user');
 
-configurePassport(passport, database);
+configurePassport(passport, User);
 
 app.use(require('express-session')({
   secret: 'secreto',
@@ -46,7 +42,17 @@ app.get('/users',(req, res) => {
     res.json(database);
 })
 
-app.listen(port,()=>{
-    console.log(`http://localhost:${port}`);
-    console.log(`http://${ip.address()}:${port}`);
-});
+const connect = require('./src/database/connect');
+async function start(){
+    try {
+        await connect(process.env.MONGO_URI);
+        app.listen(port,()=>{
+            console.log(`http://localhost:${port}`);
+            console.log(`http://${ip.address()}:${port}`);
+        });
+    } catch (error) {
+        console.error("Error in conncection");
+    }
+}
+
+start();

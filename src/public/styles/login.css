@@ -3,8 +3,23 @@
     margin: 0;
     padding: 0;
 }
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+  
 body{
     font-family: 'Montserrat';
+    background-color: #FBFBFF;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1
 }
 nav{
     position: fixed;
@@ -12,24 +27,22 @@ nav{
     left: 0;
     right: 0;
     height: 10vh;
-    background-color: #0077b6;
+    background-color: #20BF55;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 0 20px;
 }
 a{
-    color: #fff;
+    color: #FBFBFF;
     text-decoration: none;
     font-weight: 700;
 }
 a:hover{
-    color: #03045e;
+    color: #757575;
 }
 .background{
     height: 100vh;
-    /* background-image: url("https://images.pexels.com/photos/4609733/pexels-photo-4609733.jpeg"); */
-    background-color: #d4f8ff;
     background-size: cover;
     background-position:  center center;
     display: flex;
@@ -37,16 +50,16 @@ a:hover{
     justify-content: center;
 }
 form{
-    background-color: #fff;
-    padding: 10px 25px 20px 25px;
+    background-color: #FBFBFF;
+    padding: 20px 35px 30px 35px;
     border-radius: 20px;
-    box-shadow: 4px 4px 4px #878787;
+    border:  2px solid #20BF55;
 }
 form h1{
     font-size: 25px;
 }
 input{
-    width: 350px;
+    width: 400px;
     display: block;
     box-sizing: border-box;
     border-radius: 10px;
@@ -57,7 +70,7 @@ input{
     margin-top: 20px;
 }
 input:focus{
-    box-shadow: 1px 1px 8px #37727d;
+    box-shadow: 1px 1px 8px #20BF55;
 }
 input[type="text"]{
     margin-top: 10px;
@@ -67,17 +80,18 @@ input[type="submit"]{
     font-size: 15px;
     color: #fff;
     border: none;
-    background-color: #0077b6;
+    background-color: #20BF55;
 }
 input[type="submit"]:hover{
-    background-color: #0096c7;
+    background-color: #757575;
 }input[type="submit"]:active{
-    background-color: #ade8f4;
-    color: #03045e;
+    background-color: #FBFBFF;
+    color: #20BF55;
 }
 .message{
-    color: #e13926;
+    color: #0B4F6C;
+    text-align: center;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 5px;
 }

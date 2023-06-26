@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/login.css">
-    <title>Document</title>
+    <title>Sign-Up</title>
 </head>
 <body>
     <nav>
@@ -13,7 +13,9 @@
     <div class="background">
         <form action="/Sign-Up" method="post">
             <h1>Registrarse</h1>
-            <p class="message"></p>
+            <% if (message) { %>
+                <p class="message"><%= message %></p>
+              <% } %> 
             <input type="text" placeholder="Username" required name="username">
             <input type="password" placeholder="Password" required name="password">
             <input type="submit" value="Enviar">

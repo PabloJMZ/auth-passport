@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 
-function configurePassport(passport, database){
+function configurePassport(passport, User){
   // Configuración de Passport.js
   passport.use('sign-in',
     new LocalStrategy({
@@ -8,13 +8,12 @@ function configurePassport(passport, database){
       passwordField: 'password',
       passReqToCallback: true
     },
-    (req, username, password, done) => {
+    async (req, username, password, done) => {
       // Buscar el usuario en la base de datos
-      console.log(username, password);
-      const user = database.find(u => u.username === username);
+      const user = await User.findOne({username});
 
       if (!user || user.password !== password) {
-        return done(null, false, req.flash('signupMessage', 'Nombre de usuario o contraseña incorrectos'));
+        return done(null, false, req.flash('messageSign-In', 'Nombre de usuario o contraseña incorrectos'));
       }
       return done(null, user);
     })
@@ -26,24 +25,24 @@ function configurePassport(passport, database){
       passwordField: 'password',
       passReqToCallback: true
     },
-    (req, username, password, done) => {
+    async (req, username, password, done) => {
       // Buscar el usuario en la base de datos
-      const findUser = database.find(u => u.username === username);
+      const findUser = await User.findOne({username});
       if (findUser) {
-        return done(null, false, req.flash('signInMessage', 'Usuario ocupado'));
+        return done(null, false, req.flash('messageSign-Up', 'Username no disponible'));
       }
-      const user = { username, password }
-      database.push(user);
-      return done(null, user);
+      const newUser = new User({username,password});
+      await newUser.save();
+      return done(null, newUser);
     })
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user.username);
+    done(null, user._id);
   });
 
-  passport.deserializeUser((username, done) => {
-    const user = database.find(u => u.username === username);
+  passport.deserializeUser(async (id, done) => {
+    const user = await User.findOne({_id: id});
     done(null, user);
   });
 }
